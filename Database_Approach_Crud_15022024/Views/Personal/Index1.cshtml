@@ -1,0 +1,40 @@
+﻿@model Database_Approach_Crud_15022024.Models.personalinfo
+@{
+    ViewBag.Title = "Index1";
+}
+
+<h2>Index1</h2>
+
+@using (Html.BeginForm("Index1","Personal",FormMethod.Post))
+{   
+    
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>@Html.TextBoxFor(x => x.Name)</td>
+        </tr>
+
+        <tr>
+            <td>Class</td>
+            <td>@Html.TextBoxFor(x => x.Class)</td>
+        </tr>
+
+        <tr>
+            <td>Roll</td>
+            <td>@Html.TextBoxFor(x => x.Roll_No)</td>
+        </tr>
+
+        <tr>
+            <td>Salary</td>
+            <td>@Html.TextBoxFor(x => x.Salary)</td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><input type="submit" id="btn" value="Save" /></td>
+        </tr>
+
+    </table>
+
+}
+

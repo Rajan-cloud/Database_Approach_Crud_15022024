@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Rajan_RR_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="cid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cname" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student_data">
+          <Key>
+            <PropertyRef Name="Std_id" />
+          </Key>
+          <Property Name="Std_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Std_name" Type="varchar" MaxLength="50" />
+          <Property Name="Std_Age" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Department" Type="int" />
+          <Property Name="Position" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_position">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pname" Type="varchar" MaxLength="20" />
+          <Property Name="cid" Type="int" />
+        </EntityType>
+        <EntityContainer Name="Rajan_RR_DBModelStoreContainer">
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_data" EntityType="Self.Student_data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_position" EntityType="Self.tbl_position" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Rajan_RR_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="cid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student_data">
+          <Key>
+            <PropertyRef Name="Std_id" />
+          </Key>
+          <Property Name="Std_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Std_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Std_Age" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="Int32" />
+          <Property Name="Position" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_position">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cid" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="Rajan_RR_DBEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="Student_data" EntityType="Self.Student_data" />
+          <EntitySet Name="tbl_position" EntityType="Self.tbl_position" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Rajan_RR_DBModelStoreContainer" CdmEntityContainer="Rajan_RR_DBEntities3">
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="Rajan_RR_DBModel.Country">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="cname" ColumnName="cname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student_data">
+            <EntityTypeMapping TypeName="Rajan_RR_DBModel.Student_data">
+              <MappingFragment StoreEntitySet="Student_data">
+                <ScalarProperty Name="Std_id" ColumnName="Std_id" />
+                <ScalarProperty Name="Std_name" ColumnName="Std_name" />
+                <ScalarProperty Name="Std_Age" ColumnName="Std_Age" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_position">
+            <EntityTypeMapping TypeName="Rajan_RR_DBModel.tbl_position">
+              <MappingFragment StoreEntitySet="tbl_position">
+                <ScalarProperty Name="pid" ColumnName="pid" />
+                <ScalarProperty Name="pname" ColumnName="pname" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Database_Approach_Crud_15022024.Models.Student_data1>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="justify-content-end d-flex">
+    @using (Html.BeginForm("Getdata", "Personal", FormMethod.Get))
+    {
+        <div class="justify-content d-flex">
+            @Html.TextBox("search", null, new { @class = "form-control" }) <br /><input type="submit" name="submit" value="Search" class="btn btn-dark m-auto" />
+        </div>
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Std_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Std_Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Position)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Std_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Std_Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Position)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Std_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Std_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Std_id })
+        </td>
+    </tr>
+}
+
+</table>

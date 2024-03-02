@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Database_Approach_Crud_15022024.Models.Student_data>
+
+<p>
+    @Html.ActionLink("Create New", "Index")
+</p>
+
+    <div class="justify-content-end d-flex">
+        @using (Html.BeginForm("Search", "Personal", FormMethod.Get))
+        {
+            <div class="justify-content d-flex">
+                @Html.TextBox("search", null, new { @class = "form-control" }) <br /><input type="submit" name="submit" value="Search" class="btn btn-dark m-auto" />
+            </div>
+            }
+        </div>
+
+  <table class="table table-hover mt-2">
+    <tr style="background-color:mediumturquoise">
+        <th>
+            @Html.DisplayNameFor(model => model.Std_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Std_Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Position)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Std_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Std_Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Position)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Del", new { id = item.Std_id }, new { @class = "btn btn-danger" }) | @Html.ActionLink("Edit", "Index", new { id = item.Std_id }, new { @class = "btn btn-secondary" })
+           
+            @*@Html.ActionLink("Details", "Details", new { id = item.Std_id }) |*@
+           
+        </td>
+
+      
+    </tr>
+}
+
+</table>

@@ -1,0 +1,124 @@
+﻿@model Database_Approach_Crud_15022024.Models.Student_data
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm("Index", "Personal", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>@Html.HiddenFor(x => x.Std_id)</td>
+        </tr>
+
+        <tr>
+            <td>Student Name</td>
+            <td>@Html.TextBoxFor(x => x.Std_name, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x=>x.Std_name)</td>
+        </tr>
+
+        <tr>
+            <td> Student Age</td>
+            <td>@Html.TextBoxFor(x => x.Std_Age, new { @class = "form-control", value = "" })</td>
+        </tr>
+
+        <tr>
+            <td>Email</td>
+            <td>@Html.TextBoxFor(x => x.Email, new { @class = "form-control" })</td>
+        </tr>
+
+        <tr>
+            <td>Department</td>
+            <td>@Html.DropDownListFor(x => x.Department, new SelectList(ViewBag.dpt, "cid", "cname"), "---Choose Country", new {onchange= "BindState()", @class = "form-control"})</td>
+        </tr>
+
+
+
+        <tr>
+            <td>Position</td>
+            <td>
+                @Html.DropDownListFor(x => x.Position, new SelectList(ViewBag.stt, "pid", "pname"), "---Select---", new { @class = "form-control" })
+                @*@Html.DropDownListFor(x => x.Position, new SelectList(""), "---Select---", new { @class = "form-control" })*@
+
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><input type="submit" id="btnsave" value="@ViewBag.btn" class="btn btn-dark rounded-4" /></td>
+        </tr>
+
+    </table>
+   
+    <table class="table table-hover">
+       
+        <tr style="background-color:mediumturquoise">
+            <th>Student id</th>
+            <th>Student Name</th>
+            <th>Student Age</th>
+            <th>Student Email</th>
+            <th>Department</th>
+            <th>Position</th>
+        </tr>
+
+        @foreach (var a in ViewBag.abc)
+        {
+            <tr>
+                <td>@a.Std_id</td>
+                <td>@a.Std_name</td>
+                <td>@a.Std_Age</td>
+                <td>@a.Email</td>
+                <td>@a.Department</td>
+                <td>@a.Position</td>   
+            </tr>
+        }
+    </table>
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    function BindState() {
+        if ($("#Std_id").val() > 0) {
+            $.ajax({
+                url: '../GetState',
+                type: 'post',
+                data: { A: $("#Department").val() },
+                success: function (data) {
+                    
+                    $("#Position").empty();
+                    $("#Position").append($('<option></option>').html("--Select--").val(0));
+                    //BindState();
+                    for (var i = 0; i < data.length; i++) {
+                        $("#Position").append($('<option></option>').html(data[i].pname).val(data[i].pid));
+                    }
+                },
+                error: function () {
+                    alert('State not bind !!');
+                }
+            });  
+        }
+        else {
+            $.ajax({
+                url: '../Personal/GetState',
+                type: 'post',
+                data: { A: $("#Department").val() },
+                success: function (data) {
+                    $("#Position").empty();
+                    $("#Position").append($('<option></option>').html("--Select--").val(0));
+                    //BindState();
+                    for (var i = 0; i < data.length; i++) {
+                        $("#Position").append($('<option></option>').html(data[i].pname).val(data[i].pid));
+                    }
+                },
+                error: function () {
+                    alert('State not bind !!');
+                }
+            });  
+        }
+       
+           
+    }
+</script>
+
+
+
